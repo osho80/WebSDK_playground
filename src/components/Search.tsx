@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // const Search = ({setFilter}: any) => {
 const Search = (props: any) => {
-  const [query, setQuery] = useState<null | string>(null);
+  const [query, setQuery] = useState<string>("");
   console.log("Props:", props);
   const { setFilter } = props;
   // console.log("setFilter:", setFilter);
@@ -20,7 +20,6 @@ const Search = (props: any) => {
         placeholder="Search Customer"
         onChange={(e) => handleChange(e)}
       />
-      {/* <button onClick={setFilter(query)}>Search</button> */}
     </div>
   );
 };

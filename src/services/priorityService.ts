@@ -40,7 +40,7 @@ const configFilter = (query: string, field: string) => {
   };
 };
 export const getRowsData = async (
-  query: string = "b*",
+  query: string,
   field: string = "CUSTNAME",
   form: Form
 ) => {
