@@ -47,7 +47,6 @@ export const getRowsData = async (
   const filter = configFilter(query, field);
   await form.setSearchFilter(filter);
   const rows = await form.getRows(1);
-  // console.log("My rows:", rows);
 
   return rows;
 };
