@@ -20,18 +20,3 @@ export const loginConfig = {
   appid: "",
   appkey: "",
 };
-
-export const filterObj = {
-  or: 1 as BooleanNumber,
-  ignorecase: 1 as BooleanNumber,
-  QueryValues: [
-    {
-      field: "CUSTNAME",
-      fromval: "b*",
-      toval: "",
-      op: "=",
-      sort: 0 as BooleanNumber,
-      isdesc: 0 as BooleanNumber,
-    },
-  ],
-};

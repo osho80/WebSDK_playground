@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {
-  login,
-  formStart,
-  Form,
-  MessagesCallback,
-  FormRows,
-} from "priority-web-sdk";
-import { loginConfig, filterObj } from "./config";
-import { updateFieldsCallback, messagesCallback } from "./utils/utils";
+import { Form } from "priority-web-sdk";
 import Search from "./components/Search";
-import Report from "./components/Report";
 import Table from "./components/Table";
 import {
   initLogin,
@@ -23,21 +14,6 @@ function App() {
   const [filter, setFilter] = useState<string>("");
   const [form, setForm] = useState<null | Form>(null);
   const [rows, setRows] = useState<any>(null);
-  let customersForm: any;
-
-  // const updateFieldsCallback = (updates: any) => {
-  //   console.log("updateFieldsCallback - update:", updates);
-
-  //   if (updates["CUSTOMERS"] != null) {
-  //     Object.assign(customersForm.rows, updates["CUSTOMERS"]);
-  //   }
-  // };
-
-  // const messagesCallback = (serverMessage: any) => {
-  //   console.log("messagesCallback - serverMessage:", serverMessage);
-
-  //   alert(serverMessage.message);
-  // };
 
   useEffect(() => {
     initLogin().then(() => setReady(true));
@@ -57,98 +33,11 @@ function App() {
     }
   }, [form, filter]);
 
-  // useEffect(() => {
-  //   const loginMethods = async () => {
-  //     const x = await login(loginConfig);
-  //     console.log("loginMethods:", x);
-  //     setReady(true);
-  //   };
-  //   loginMethods();
-  // }, []);
-
-  // useEffect(() => {
-  //   if (ready) {
-  //     const getFormData = async () => {
-  //       // console.log("Let's go!");
-  //       const myForm = await formStart(
-  //         "CUSTOMERS",
-  //         messagesCallback,
-  //         updateFieldsCallback,
-  //         { company: "test" },
-  //         0
-  //       );
-  //       // console.log("myForm:", myForm);
-  //       // setForm(myForm);
-  //     };
-  //     getFormData();
-  //   }
-  // }, [ready]);
-
-  // useEffect(()=> {
-
-  //   const clearFilter = async()=> {
-  //     if(form) await form.clearSearchFilter()
-  //   }
-  //   if(filter) {
-  //     // clearFilter()
-  //     // filterObj.QueryValues[0].fromval = filter + "*"
-
-  //     const getFormData = async () => {
-  //       const myForm = await formStart('CUSTOMERS', messagesCallback, updateFieldsCallback, {company: "test"}, 0);
-  //       setForm(myForm)
-  //     }
-  //     // if(form) {
-  //     //   form.queryFilters.queryValues[0].fromval = filter
-  //     //   getFormData();
-  //     // }
-  //   }
-  //     console.log("filterObj:", filterObj);
-  //   if(form) {
-  //     // console.log("setting a search filter");
-  //     // if(filter) filterObj.QueryValues[0].fromval = filter + "*"
-  //     // console.log("filterObj:", filterObj);
-
-  //     const setFilter = async () => {
-  //       await form.setSearchFilter(filterObj)
-  //       // console.log("getting rows");
-  //       const rows = await form.getRows(1);
-  //       // console.log("My rows:", rows);
-  //       setRows(rows)
-  //     }
-  //     setFilter();
-  //   }
-  // }, [form, filter])
-
-  useEffect(() => {
-    if (form) {
-      const getRowsData = async () => {
-        await form.setSearchFilter(filterObj);
-        // console.log("getting rows");
-        const rows = await form.getRows(1);
-        // console.log("My rows:", rows);
-        setRows(rows);
-      };
-      if (filter) {
-        console.log({ filterObj });
-        filterObj.QueryValues[0].fromval = filter + "*";
-        filterObj.QueryValues[0].field = "CUSTNAME";
-      }
-      console.log({ filterObj });
-
-      // getRowsData();
-    }
-  }, [form, filter]);
-  console.log("Form:", form);
-  console.log("Filter:", filter);
-
   return (
     <div className="App">
-      <h1>Play Ground</h1>
-      <h2>Priority Web SDK</h2>
+      <h2>Priority Web SDK Exercise</h2>
       <Search setFilter={setFilter} />
-      {/* {rows && form && <Report rows={rows} form={form}/>} */}
       {rows && form && <Table rows={rows} form={form} />}
-      {/* {rows && form && <Report data={rows} formData={form}/>} */}
     </div>
   );
 }
